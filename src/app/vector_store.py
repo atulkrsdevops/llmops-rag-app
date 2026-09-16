@@ -40,7 +40,10 @@ def get_retriever():
 
     if app_params.contextual_compression:
         # compressor
-        compression_llm = ChatOpenAI(model=app_params.compression_llm)
+        compression_llm = ChatOpenAI(
+    model=app_params.compression_llm,
+    temperature=0,
+)
         compressor = LLMChainExtractor.from_llm(compression_llm)
 
         # compression retriever
