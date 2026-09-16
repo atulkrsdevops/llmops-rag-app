@@ -9,7 +9,7 @@ rag_app:
   tokenizer_encoding: o200k_base
   collection_name: rag_demo
   search_type: similarity
-  k: 3
+  k: 5
   contextual_compression: true 
   compression_llm: gpt-5-mini
 
@@ -50,6 +50,4 @@ evaluation:
   display_config:
     results_dir: evaluation_results
     report_dir: evaluation_report
-
-
 

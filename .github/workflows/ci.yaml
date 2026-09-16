@@ -13,6 +13,15 @@ on:
     branches: [main]
     paths:
       - params.yaml
+      - "src/**"
+      - "utils/**"
+      - "tests/**"
+      - "data/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "docker/**"
+      - ".github/workflows/ci.yaml"
+      - ".github/workflows/cd.yaml"
   workflow_dispatch:
 
 # The later stages mutate shared MLflow `stage` tags on DagsHub, so never let

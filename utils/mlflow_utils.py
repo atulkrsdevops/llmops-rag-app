@@ -131,11 +131,11 @@ def reject_challenger(experiment_id: str) -> str:
 if __name__ == "__main__":
     
     # initialize dagshub and mlflow
-    dagshub.init(repo_owner='himanshu1703', repo_name='llmops-rag-app', mlflow=True)
+    dagshub.init(repo_owner='atulkrs', repo_name='llmops-rag-app', mlflow=True)
     
 
     # set the tracking server
-    mlflow.set_tracking_uri("https://dagshub.com/himanshu1703/llmops-rag-app.mlflow")
+    mlflow.set_tracking_uri("https://dagshub.com/atulkrs/llmops-rag-app.mlflow")
     
     # fetch the experiment id
     experiment_id = mlflow.get_experiment_by_name("rag-app").experiment_id
