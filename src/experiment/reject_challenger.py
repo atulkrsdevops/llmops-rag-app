@@ -13,10 +13,10 @@ import mlflow
 from utils.mlflow_utils import CHALLENGER, get_run_by_stage, reject_challenger
 
 # initialize dagshub and mlflow
-dagshub.init(repo_owner='himanshu1703', repo_name='llmops-rag-app', mlflow=True)
+dagshub.init(repo_owner='atulkrs', repo_name='llmops-rag-app', mlflow=True)
 
 # set the tracking server
-mlflow.set_tracking_uri("https://dagshub.com/himanshu1703/llmops-rag-app.mlflow")
+mlflow.set_tracking_uri("https://dagshub.com/atulkrs/llmops-rag-app.mlflow")
 
 experiment_id = mlflow.get_experiment_by_name("rag-app").experiment_id
 
