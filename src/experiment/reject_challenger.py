@@ -20,7 +20,11 @@ mlflow.set_tracking_uri("https://dagshub.com/atulkrs/llmops-rag-app.mlflow")
 
 experiment_id = mlflow.get_experiment_by_name("rag-app").experiment_id
 
-challenger = get_run_by_stage(CHALLENGER, experiment_id)
+try:
+    challenger = get_run_by_stage(CHALLENGER, experiment_id)
+except RuntimeError:
+    print("No challenger exists; nothing to reject.")
+    raise SystemExit(0)
 print(f"challenger : {challenger.info.run_id}  ({challenger.info.run_name})")
 
 reject_challenger(experiment_id)

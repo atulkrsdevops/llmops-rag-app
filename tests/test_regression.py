@@ -1,3 +1,4 @@
+import os
 import pytest
 from pathlib import Path
 import json
@@ -51,8 +52,13 @@ experiment_id = experiment.experiment_id
 try:
     challenger_run = get_run_by_stage(CHALLENGER, experiment_id)
 except RuntimeError:
+    if os.getenv("CI") == "true":
+        raise RuntimeError(
+            "CI quality gate requires exactly one stage='challenger' run."
+        )
+
     pytest.skip(
-        "No stage='challenger' run exists; regression gate is evaluated after CI creates a challenger.",
+        "No stage='challenger' run exists; gate is evaluated after CI creates a challenger.",
         allow_module_level=True,
     )
 
