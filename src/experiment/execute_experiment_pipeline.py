@@ -11,7 +11,7 @@ import logging
 from logging import INFO
 import dagshub
 import json
-from utils.mlflow_utils import log_run_info, demote_stale_challengers
+from utils.mlflow_utils import CHALLENGER, log_run_info, demote_stale_challengers, set_stage
 
 # load the api keys
 load_dotenv()
@@ -205,6 +205,22 @@ if __name__ == "__main__":
     run_id = run.info.run_id
     run_name = run.info.run_name
     
+    # Persist the challenger stage explicitly after the active MLflow run
+    # context has closed.
+    set_stage(run_id, CHALLENGER)
+
+    # Verify that the tag is actually persisted on the tracking server.
+    stored_run = mlflow.get_run(run_id)
+    stored_stage = stored_run.data.tags.get("stage")
+
+    if stored_stage != CHALLENGER:
+        raise RuntimeError(
+            f"Failed to persist stage={CHALLENGER!r} for run {run_id}; "
+            f"stored stage={stored_stage!r}"
+        )
+
+    logger.info(f"Run tagged stage={CHALLENGER}")
+
     # log to json file
     log_run_info(run_id, run_name)
 
