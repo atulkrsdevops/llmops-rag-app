@@ -22,7 +22,7 @@ env:
   ECR_FRONTEND_REPOSITORY: campusx-rag-frontend
   # CodeDeploy rollout (see deploy/codedeploy/ and codedeploy_steps.md). These
   # names are contractual -- the console resources must match them exactly.
-  DEPLOY_BUCKET: campusx-rag-codedeploy
+  DEPLOY_BUCKET: campusx-rag-codedeploy-332422487493
   CODEDEPLOY_APP: campusx-rag
   CODEDEPLOY_GROUP: campusx-rag-dg
 
